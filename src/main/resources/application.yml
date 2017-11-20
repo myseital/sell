@@ -6,6 +6,8 @@ spring:
     url: jdbc:mysql://localhost:3306/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
+#  jackson: #配置controller返回值去掉null的数据 data;null 不会被返回到前台
+#    default-property-inclusion: non_null
 server:
   context-path: /sell
 #logging:

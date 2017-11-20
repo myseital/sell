@@ -2,16 +2,20 @@ package com.mao.common.enums;
 
 import lombok.Getter;
 
+/**
+ * Created by myseital  on 2017/11/20.
+ */
 @Getter
-public enum ProductStatus {
-    UP(0, "在架"),
-    DOWN(1,"下架");
+public enum PayStatus {
+
+    WAIT(0, "等待支付"),
+    SUCCESS(1, "支付成功");
 
     private Integer code;
 
     private String message;
 
-    ProductStatus(Integer code, String message) {
+    PayStatus(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

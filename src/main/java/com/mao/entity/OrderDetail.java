@@ -8,32 +8,33 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Created by myseital  on 2017/11/20.
+ */
 @Entity
 @Data
 @DynamicUpdate
-public class ProductInfo {
+public class OrderDetail {
 
     @Id
+    private String detailId;
+
+    private String orderId;
+
     private String productId;
 
     private String productName;
 
     private BigDecimal productPrice;
 
-    private Integer productStock;
-
-    private String productDescription;
+    private Integer productQuantity;
 
     private String productIcon;
-
-    private Integer productStatus;
-
-    private Integer categoryType;
 
     private Date createTime;
 
     private Date updateTime;
 
-    public ProductInfo() {
+    public OrderDetail() {
     }
 }

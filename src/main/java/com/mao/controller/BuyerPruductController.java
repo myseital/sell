@@ -1,6 +1,5 @@
 package com.mao.controller;
 
-import com.mao.common.enums.ProductStatus;
 import com.mao.common.utils.Result;
 import com.mao.common.utils.ResultUtil;
 import com.mao.entity.ProductCategory;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @RestController
