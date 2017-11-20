@@ -7,6 +7,7 @@ import com.mao.entity.OrderDetail;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,4 +43,7 @@ public class OrderDTO {
     private Date updateTime;
 
     private List<OrderDetail> orderDetailList;
+
+    //返回的json中需要list数据，但实际没有数据  不能用null表示 需要用数组表示[]
+    //private List<OrderDetail> orderDetailList = new ArrayList<>();
 }

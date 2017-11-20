@@ -7,6 +7,7 @@ import com.mao.common.utils.ResultUtil;
 import com.mao.dto.OrderDTO;
 import com.mao.exception.SellException;
 import com.mao.form.OrderForm;
+import com.mao.service.BuyerService;
 import com.mao.service.OrderServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderServer orderServer;
+
+    @Autowired
+    private BuyerService buyerService;
 
     @PostMapping(value = "/create")
     public Result create(@Valid OrderForm orderForm, BindingResult bindingResult) {
@@ -67,8 +71,30 @@ public class BuyerOrderController {
         // 修改返回的时间值 由毫秒到秒 date对应的字段添加@JsonSerialize(using = Date2LongSerializer.class)
         // 返回的值为null 则不返回 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)被废弃
         // 推荐使用 @JsonInclude(JsonInclude.Include.NON_NULL)
+
         return ResultUtil.success(orderDTOPage.getContent());
     }
 
+    @GetMapping(value = "/detail")
+    public Result detail(@RequestParam("openid") String openid, @RequestParam("orderId") String orderId) {
+        /* 不安全做法,改进
+        OrderDTO orderDTO = orderServer.findOne(orderId);
+        if (!orderDTO.getBuyerOpenid().equals(openid)) {
 
+        }
+        return ResultUtil.success(orderDTO);*/
+
+        return ResultUtil.success(buyerService.findOrderOne(openid, orderId));
+    }
+
+    @PostMapping(value = "/cancel")
+    public Result cancel(@RequestParam("openid") String openid, @RequestParam("orderId") String orderId){
+        /* 不安全做法,改进
+        OrderDTO orderDTO = orderServer.findOne(orderId);
+        orderServer.cancel(orderDTO);
+        return ResultUtil.success(orderDTO);*/
+
+        buyerService.cancelOrder(openid, orderId);
+        return ResultUtil.success();
+    }
 }
