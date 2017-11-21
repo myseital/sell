@@ -2,12 +2,11 @@ package com.mao.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.mao.common.utils.serializer.Date2LongSerializer;
+import com.mao.common.serializer.Date2LongSerializer;
 import com.mao.entity.OrderDetail;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

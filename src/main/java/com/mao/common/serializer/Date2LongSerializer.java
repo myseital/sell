@@ -1,4 +1,4 @@
-package com.mao.common.utils.serializer;
+package com.mao.common.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

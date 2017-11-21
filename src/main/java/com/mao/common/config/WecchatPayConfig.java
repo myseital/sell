@@ -1,4 +1,4 @@
-package com.mao.common.utils.config;
+package com.mao.common.config;
 
 import com.lly835.bestpay.config.WxPayH5Config;
 import com.lly835.bestpay.service.BestPayService;

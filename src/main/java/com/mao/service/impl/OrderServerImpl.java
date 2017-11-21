@@ -14,6 +14,7 @@ import com.mao.exception.SellException;
 import com.mao.repository.OrderDetailRepository;
 import com.mao.repository.OrderMasterRepository;
 import com.mao.service.OrderServer;
+import com.mao.service.PayService;
 import com.mao.service.ProductInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -45,6 +46,9 @@ public class OrderServerImpl implements OrderServer{
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -153,7 +157,7 @@ public class OrderServerImpl implements OrderServer{
 
         //4. 如果已支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatus.SUCCESS.getCode())) {
-            //TODO
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
@@ -210,5 +214,13 @@ public class OrderServerImpl implements OrderServer{
         }
 
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 }

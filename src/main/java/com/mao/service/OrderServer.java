@@ -11,6 +11,7 @@ public interface OrderServer {
 
     /**
      * 创建订单
+     *
      * @param orderDTO 创建的orderDTO对象
      * @return 创建好的OrderDTO
      */
@@ -18,6 +19,7 @@ public interface OrderServer {
 
     /**
      * 查询单个订单
+     *
      * @param orderId 订单id
      * @return 查询到的OrderDTO
      */
@@ -25,14 +27,16 @@ public interface OrderServer {
 
     /**
      * 查询订单列表
+     *
      * @param buyerOpenid 买家id
-     * @param pageable 分页查询请求类型
+     * @param pageable    分页查询请求类型
      * @return 分页对象
      */
     Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 
     /**
      * 取消订单
+     *
      * @param orderDTO 被取消的orderDTO对象
      * @return 取消之后的OrderDTO
      */
@@ -40,6 +44,7 @@ public interface OrderServer {
 
     /**
      * 完成订单
+     *
      * @param orderDTO 被完成的订单OrderDTo对象
      * @return 完成好的订单OrderDTo对象
      */
@@ -47,8 +52,17 @@ public interface OrderServer {
 
     /**
      * 支付订单
+     *
      * @param orderDTO 被支付的订单OrderDTO对象
      * @return 支付完的订单OrderDTO对象
      */
     OrderDTO paid(OrderDTO orderDTO);
+
+    /**
+     * 查询订单列表
+     *
+     * @param pageable 分页查询请求类型
+     * @return 分页对象
+     */
+    Page<OrderDTO> findList(Pageable pageable);
 }
