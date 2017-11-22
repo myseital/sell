@@ -1,8 +1,12 @@
 package com.mao.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mao.common.enums.OrderStatus;
+import com.mao.common.enums.PayStatus;
 import com.mao.common.serializer.Date2LongSerializer;
+import com.mao.common.utils.EnumUtil;
 import com.mao.entity.OrderDetail;
 import lombok.Data;
 
@@ -45,4 +49,14 @@ public class OrderDTO {
 
     //返回的json中需要list数据，但实际没有数据  不能用null表示 需要用数组表示[]
     //private List<OrderDetail> orderDetailList = new ArrayList<>();
+
+    @JsonIgnore
+    public OrderStatus getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatus.class);
+    }
+
+    @JsonIgnore
+    public PayStatus getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatus.class);
+    }
 }

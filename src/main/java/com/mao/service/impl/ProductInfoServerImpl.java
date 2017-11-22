@@ -75,4 +75,18 @@ public class ProductInfoServerImpl implements ProductInfoService {
             repository.save(productInfo);
         }
     }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = repository.findOne(productId);
+        if (productId == null) {
+
+        }
+        return null;
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        return null;
+    }
 }

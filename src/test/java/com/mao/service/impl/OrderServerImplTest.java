@@ -49,12 +49,12 @@ public class OrderServerImplTest {
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
         o1.setProductId("123456");
-        o1.setProductQuantity(10);
+        o1.setProductQuantity(1);
         orderDetailList.add(o1);
 
         OrderDetail o2 = new OrderDetail();
         o2.setProductId("123457");
-        o2.setProductQuantity(5);
+        o2.setProductQuantity(1);
         orderDetailList.add(o2);
 
         orderDTO.setOrderDetailList(orderDetailList);

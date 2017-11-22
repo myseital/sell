@@ -13,16 +13,19 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h4>
                     成功!
-                </h4> <strong>${msg!""}</strong><a href="${url}" class="alert-link">3s后自动跳转</a>
+                </h4> <strong>${msg!""}</strong><a href="${url}" class="alert-link"><span>3</span>s后自动跳转</a>
             </div>
         </div>
     </div>
 </div>
-
+<#--<div id="count">
+    <div id="sec-count" class="numbers"></div>
+</div>-->
 </body>
 
 <script>
     setTimeout('location.href="${url}"', 3000);
 </script>
-
+<#--<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="/sell/js/jcountdown.min.js"></script>-->
 </html>

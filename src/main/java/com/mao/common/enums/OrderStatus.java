@@ -6,7 +6,7 @@ import lombok.Getter;
  * Created by myseital  on 2017/11/20.
  */
 @Getter
-public enum OrderStatus {
+public enum OrderStatus implements CodeEnum {
     NEW(0, "新订单"),
     FINISH(1, "完成"),
     CANCEL(2, "已取消");

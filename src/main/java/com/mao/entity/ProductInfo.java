@@ -1,5 +1,9 @@
 package com.mao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mao.common.enums.PayStatus;
+import com.mao.common.enums.ProductStatus;
+import com.mao.common.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -35,5 +39,10 @@ public class ProductInfo {
     private Date updateTime;
 
     public ProductInfo() {
+    }
+
+    @JsonIgnore
+    public ProductStatus getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatus.class);
     }
 }
