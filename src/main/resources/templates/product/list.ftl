@@ -25,7 +25,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <#list productInfoPage.content as productInfo>
                         <tr>
                             <td>${productInfo.productId}</td>

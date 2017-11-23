@@ -30,7 +30,7 @@ public class ProductInfo {
 
     private String productIcon;
 
-    private Integer productStatus;
+    private Integer productStatus = ProductStatus.UP.getCode();
 
     private Integer categoryType;
 

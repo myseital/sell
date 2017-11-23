@@ -50,3 +50,13 @@ create table `order_detail` (
 	primary key (`detail_id`),
 	key `idx_order_id` (`order_id`)
 ) comment '���������';
+
+create table `seller_info` (
+	`seller_id` varchar(32) not null,
+	`username` varchar(32) not null,
+	`password` varchar(32) not null,
+	`openid` varchar(64) not null comment '微信openid',
+	`create_time` timestamp not null default current_timestamp comment '����ʱ��',
+	`update_time` timestamp not null default current_timestamp on update current_timestamp comment '�޸�ʱ��',
+	primary key (`seller_id`)
+) comment '卖家信息表';

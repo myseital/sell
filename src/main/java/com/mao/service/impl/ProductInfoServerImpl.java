@@ -7,6 +7,7 @@ import com.mao.entity.ProductInfo;
 import com.mao.exception.SellException;
 import com.mao.repository.ProductInfoRepository;
 import com.mao.service.ProductInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductInfoServerImpl implements ProductInfoService {
 
     @Autowired
@@ -80,13 +82,37 @@ public class ProductInfoServerImpl implements ProductInfoService {
     public ProductInfo onSale(String productId) {
         ProductInfo productInfo = repository.findOne(productId);
         if (productId == null) {
-
+            log.error("[商品上架] 查询商品失败 productInfo={}", productInfo);
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         }
-        return null;
+
+        if (productInfo.getProductStatusEnum().equals(ProductStatus.UP)) {
+            log.error("[商品上架] 商品状态错误 productInfo={}", productInfo);
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新商品状态为上架
+        productInfo.setProductStatus(ProductStatus.UP.getCode());
+
+        return repository.save(productInfo);
     }
 
     @Override
     public ProductInfo offSale(String productId) {
-        return null;
+        ProductInfo productInfo = repository.findOne(productId);
+        if (productId == null) {
+            log.error("[商品下架] 查询商品失败 productInfo={}", productInfo);
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+        }
+
+        if (productInfo.getProductStatusEnum().equals(ProductStatus.DOWN)) {
+            log.error("[商品下架] 商品状态错误 productInfo={}", productInfo);
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新商品状态为下架
+        productInfo.setProductStatus(ProductStatus.DOWN.getCode());
+
+        return repository.save(productInfo);
     }
 }

@@ -1,12 +1,9 @@
 <html>
 <#include "../common/header.ftl">
-
 <body>
 <div id="wrapper" class="toggled">
-
     <#--边栏sidebar-->
     <#include "../common/nav.ftl">
-
     <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
@@ -24,7 +21,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <#list categoryList as category>
                         <tr>
                             <td>${category.categoryId}</td>
@@ -41,7 +37,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>
