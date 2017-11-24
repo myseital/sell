@@ -4,6 +4,7 @@ import com.mao.common.enums.ResultEnum;
 import com.mao.dto.OrderDTO;
 import com.mao.exception.SellException;
 import com.mao.service.OrderServer;
+import com.mao.service.WebSocket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,9 @@ public class SellerOrderController {
 
     @Autowired
     private OrderServer orderServer;
+
+    @Autowired
+    private WebSocket webSocket;
 
     /**
      * 订单列表

@@ -13,9 +13,7 @@ import com.mao.entity.ProductInfo;
 import com.mao.exception.SellException;
 import com.mao.repository.OrderDetailRepository;
 import com.mao.repository.OrderMasterRepository;
-import com.mao.service.OrderServer;
-import com.mao.service.PayService;
-import com.mao.service.ProductInfoService;
+import com.mao.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +47,12 @@ public class OrderServerImpl implements OrderServer{
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -95,6 +99,8 @@ public class OrderServerImpl implements OrderServer{
                 .collect(Collectors.toList());
         productInfoService.decreaseStock(cartDTOList);
 
+        // 发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -121,6 +127,8 @@ public class OrderServerImpl implements OrderServer{
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
         Page<OrderMaster> orderMasterPage = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
         List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+
+        webSocket.sendMessage("测试数据");
 
         return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
@@ -182,6 +190,9 @@ public class OrderServerImpl implements OrderServer{
             log.error("[完成订单] 订单更新失败， orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_STATUS_UPDATE_FAIL);
         }
+
+        // 推送微信模板信息
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }
