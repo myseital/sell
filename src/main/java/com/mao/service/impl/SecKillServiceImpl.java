@@ -1,6 +1,5 @@
 package com.mao.service.impl;
 
-import com.mao.common.constant.RedisConstant;
 import com.mao.common.utils.KeyUtil;
 import com.mao.exception.SellException;
 import com.mao.service.RedisLock;
@@ -43,7 +42,6 @@ public class SecKillServiceImpl implements SecKillService {
                 + orders.size() + " 人";
     }
 
-
     @Override
     public String querySecKillProductInfo(String productId) {
         return this.queryMap(productId);
@@ -80,8 +78,6 @@ public class SecKillServiceImpl implements SecKillService {
         }
 
         //解锁
-
-
-
+        redisLock.unlock(productId, String.valueOf(time));
     }
 }
