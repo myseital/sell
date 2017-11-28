@@ -38,3 +38,10 @@ projectUrl:
   wechatMpAuthorize: http://sell.natapp4.cc
   wechatOpenAuthorize: http://sell.natapp4.cc
   sell: http://sell.natapp4.cc
+# 设置logger打印控制台mybatis sql 语句
+logging:
+  level:
+    com.mao.entity.mapper: trace
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+

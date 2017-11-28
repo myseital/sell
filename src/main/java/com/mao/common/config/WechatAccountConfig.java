@@ -2,6 +2,7 @@ package com.mao.common.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
  * Created by myseital  on 2017/11/21.
  */
 @Data
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "wechat")
 public class WechatAccountConfig {
 

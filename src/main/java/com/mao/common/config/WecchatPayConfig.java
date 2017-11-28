@@ -5,12 +5,12 @@ import com.lly835.bestpay.service.BestPayService;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by myseital  on 2017/11/21.
  */
-@Component
+@Configuration
 public class WecchatPayConfig {
 
     @Autowired

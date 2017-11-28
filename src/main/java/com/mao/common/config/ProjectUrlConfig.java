@@ -2,14 +2,14 @@ package com.mao.common.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by myseital  on 2017/11/23.
  */
 @Data
 @ConfigurationProperties(prefix = "projectUrl")
-@Component
+@Configuration
 public class ProjectUrlConfig {
 
     /**
